@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>bed170ba-1ba0-45f8-a910-da3cfba2bc7a</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200805143232_AddPhotoPathColumn.cs" />
+    <Compile Remove="Migrations\20200805143232_AddPhotoPathColumn.Designer.cs" />
+    <Compile Remove="Migrations\20200819140652_Extend_IdentityUser.cs" />
+    <Compile Remove="Migrations\20200819140652_Extend_IdentityUser.Designer.cs" />
+  </ItemGroup>
+	
+	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+        <Touch Files="App_Offline.htm" AlwaysCreate="true" />
+    </Target>
+
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+        <Delete Files="App_Offline.htm" />
+    </Target>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="3.1.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.9.3" />
+  </ItemGroup>
+
+</Project>
